@@ -16,27 +16,12 @@
                         <asp:TextBox ID="nombreTXT" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <label for="apellidoTxt">Apellido</label>
+                        <label for="apellidoTxt">Contraseña</label>
                         <asp:TextBox ID="apellidoTXT" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <label for="edadTxt">Edad</label>
-                        <asp:TextBox ID="edadTXT" TextMode="Number" CssClass="form-control" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label for="empresaTxt">Empresa</label>
-                        <asp:TextBox ID="empresaTXT" CssClass="form-control" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label for="estadolbl">Estado</label>
-                        <asp:RadioButtonList ID="estadoRbl" runat="server">
-                            <asp:ListItem Text="Pagada" Selected="True" Value="Pagada"></asp:ListItem>
-                            <asp:ListItem Text="Con Deuda" Value="Con Deuda"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>
-                    <div class="form-group">
-                        <label for="regionDDL">Region</label>
-                        <asp:DropDownList ID="regionDDL" runat="server"></asp:DropDownList>
+                        <label for="correoTxt">Correo</label>
+                        <asp:TextBox ID="correoTXT" TextMode="form-control" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <asp:Button runat="server" CssClass="btn btn-primary" ID="ingresaBtn" Text="Ingresar" OnClick="ingresaBtn_Click"/>
 

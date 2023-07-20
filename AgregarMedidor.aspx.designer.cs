@@ -42,40 +42,13 @@ namespace Eva4
         protected global::System.Web.UI.WebControls.TextBox apellidoTXT;
 
         /// <summary>
-        /// Control edadTXT.
+        /// Control correoTXT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox edadTXT;
-
-        /// <summary>
-        /// Control empresaTXT.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox empresaTXT;
-
-        /// <summary>
-        /// Control estadoRbl.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList estadoRbl;
-
-        /// <summary>
-        /// Control regionDDL.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList regionDDL;
+        protected global::System.Web.UI.WebControls.TextBox correoTXT;
 
         /// <summary>
         /// Control ingresaBtn.

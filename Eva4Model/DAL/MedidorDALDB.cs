@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace Eva4Model.DAL
 {
-    public class UsuarioDALDB : IUsuarioDAL
+    public class MedidorDALDB : IMedidorDAL
     {
         private MedidorDBEntities medidorDB = new MedidorDBEntities();
-        public void AgregarUsuario(Usuario usuario)
+        public void AgregarMedidor(Medidor medidor)
         {
-            this.medidorDB Usuario.Add(usuario);
+            this.medidorDB Medidor.Add(medidor);
             this.medidorDB.SaveChanges();
         }
 
-        public void EliminarUsuario(int id)
+        public void EliminarMedidor (int id)
         {
 
-            Usuario usuario = this.medidorDB.Usuario.Find(id);
-            this.medidorDB.Usuario.Remove(usuario);
+            Medidor medidor = this.medidorDB.Medidor.Find(id);
+            this.medidorDB.Medidor.Remove(medidor);
             this.medidorDB.SaveChanges();
         }
 
-        public Usuario Obtener(int id)
+        public Medidor Obtener(int id)
         {
-            return this.medidorDB.Usuario.Find(id);
+            return this.medidorDB.Medidor.Find(id);
         }
 
         public List<Asistente> ObtenerAsistentes()
