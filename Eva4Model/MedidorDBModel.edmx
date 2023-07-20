@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MedidorDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MedidorDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Medidores">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="10" />
+          <Property Name="Contraseña" Type="nchar" MaxLength="10" />
+          <Property Name="Correo" Type="nchar" MaxLength="10" />
+          <Property Name="Id" Type="nchar" MaxLength="10" />
+          <Property Name="Medidores" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -25,6 +36,39 @@
           <Property Name="Correo" Type="nchar" MaxLength="30" />
           <Property Name="Id" Type="nchar" MaxLength="10" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'MedidorDB.dbo.Usuario' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Usuario">
+          <Property Name="Rut" Type="nchar" MaxLength="10" />
+          <Property Name="Nombre" Type="nchar" MaxLength="10" />
+          <Property Name="Contraseña" Type="nchar" MaxLength="10" />
+          <Property Name="Correo" Type="nchar" MaxLength="10" />
+          <Property Name="Id" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+        <Association Name="FK_Medidores_Medidores">
+          <End Role="Medidores" Type="Self.Medidores" Multiplicity="1" />
+          <End Role="Medidores1" Type="Self.Medidores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Medidores">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Medidores1">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medidores_Medidores1">
+          <End Role="Medidores" Type="Self.Medidores" Multiplicity="1" />
+          <End Role="Medidores1" Type="Self.Medidores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Medidores">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Medidores1">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -57,11 +101,19 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MedidorDBModelStoreContainer">
+          <EntitySet Name="Medidores" EntityType="Self.Medidores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Medidores_Medidores" Association="Self.FK_Medidores_Medidores">
+            <End Role="Medidores" EntitySet="Medidores" />
+            <End Role="Medidores1" EntitySet="Medidores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medidores_Medidores1" Association="Self.FK_Medidores_Medidores1">
+            <End Role="Medidores" EntitySet="Medidores" />
+            <End Role="Medidores1" EntitySet="Medidores" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MedidorDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -75,7 +127,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Table_1">
+        <EntityType Name="Medidor">
           <Key>
             <PropertyRef Name="Rut" />
           </Key>
@@ -84,10 +136,11 @@
           <Property Name="Contraseña" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Correo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Medidores" Type="String" Nullable="false" />
         </EntityType>
         <EntityContainer Name="MedidorDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Table_1" EntityType="Self.Table_1" />
+          <EntitySet Name="Medidors" EntityType="MedidorDBModel.Medidor" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -118,6 +171,15 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Usuarios" EntityType="MedidorDBModel.Usuario" />
+          <AssociationSet Name="FK_Medidores_Medidores" Association="MedidorDBModel.FK_Medidores_Medidores">
+            <End Role="Medidore" EntitySet="Usuarios" />
+            <End Role="Medidore1" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medidores_Medidores1" Association="MedidorDBModel.FK_Medidores_Medidores1">
+            <End Role="Medidore" EntitySet="Usuarios" />
+            <End Role="Medidore1" EntitySet="Usuarios" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -130,6 +192,45 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Contraseña" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Medidores" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Medidores1" Relationship="MedidorDBModel.FK_Medidores_Medidores" FromRole="Medidore" ToRole="Medidore1" />
+          <NavigationProperty Name="Medidore1" Relationship="MedidorDBModel.FK_Medidores_Medidores" FromRole="Medidore1" ToRole="Medidore" />
+          <NavigationProperty Name="Medidores11" Relationship="MedidorDBModel.FK_Medidores_Medidores1" FromRole="Medidore" ToRole="Medidore1" />
+          <NavigationProperty Name="Medidore2" Relationship="MedidorDBModel.FK_Medidores_Medidores1" FromRole="Medidore1" ToRole="Medidore" />
+        </EntityType>
+        <Association Name="FK_Medidores_Medidores">
+          <End Type="MedidorDBModel.Usuario" Role="Medidore" Multiplicity="1" />
+          <End Type="MedidorDBModel.Usuario" Role="Medidore1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Medidore">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Medidore1">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medidores_Medidores1">
+          <End Type="MedidorDBModel.Usuario" Role="Medidore" Multiplicity="1" />
+          <End Type="MedidorDBModel.Usuario" Role="Medidore1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Medidore">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Medidore1">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -147,8 +248,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Table_1">
-            <EntityTypeMapping TypeName="MedidorDBModel.Table_1">
+          <EntitySetMapping Name="Medidors">
+            <EntityTypeMapping TypeName="MedidorDBModel.Medidor">
               <MappingFragment StoreEntitySet="Table_1">
                 <ScalarProperty Name="Rut" ColumnName="Rut" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -182,6 +283,18 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MedidorDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MedidorDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="MedidorDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Medidores">
+                <ScalarProperty Name="Medidores" ColumnName="Medidores" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

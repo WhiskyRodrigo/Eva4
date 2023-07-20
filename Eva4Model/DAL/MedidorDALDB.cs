@@ -11,41 +11,42 @@ namespace Eva4Model.DAL
         private MedidorDBEntities medidorDB = new MedidorDBEntities();
         public void AgregarMedidor(Medidor medidor)
         {
-            this.medidorDB Medidor.Add(medidor);
+            this.medidorDB Medidores.Add(medidor);
             this.medidorDB.SaveChanges();
         }
 
         public void EliminarMedidor (int id)
         {
 
-            Medidor medidor = this.medidorDB.Medidor.Find(id);
-            this.medidorDB.Medidor.Remove(medidor);
+            Medidor medidor = this.medidorDB.Medidores.Find(id);
+            this.medidorDB.Medidores.Remove(medidor);
             this.medidorDB.SaveChanges();
         }
 
         public Medidor Obtener(int id)
         {
-            return this.medidorDB.Medidor.Find(id);
+            return this.medidorDB.Medidores.Find(id);
         }
 
-        public List<Asistente> ObtenerAsistentes()
+        public List<Medidor> ObtenerMedidores()
         {
-            return this.eventoDB.Asistentes.ToList();
+            return this.medidorDB.Medidores.ToList();
         }
 
-        public void Actualizar(Asistente a)
+        public void Actualizar(Medidor a)
         {
-            Asistente aOriginal = this.eventoDB.Asistentes.Find(a.Id);
+            Medidor aOriginal = this.medidorDB.Medidores.Find(a.Id);
+            aOriginal.Rut = a.Rut;
             aOriginal.Nombre = a.Nombre;
-            aOriginal.Apellido = a.Apellido;
-            aOriginal.Edad = a.Edad;
-            this.eventoDB.SaveChanges();
+            aOriginal.Contraseña = a.Contraseña;
+            aOriginal.Correo = a.Correo;
+            this.medidorDB.SaveChanges();
         }
 
-        public List<Asistente> ObtenerAsistentes(string estado)
+        public List<Medidores> ObtenerMedidores(string estado)
         {
             //LINQ
-            var query = from a in this.eventoDB.Asistentes
+            var query = from a in this.medidorDB.Medidores
                         where a.Estado == estado
                         select a;
             return query.ToList();
