@@ -4,7 +4,7 @@
         <div class="col-lg-6 mx-auto">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h3>Ingresar Usuario</h3>
+                    <h3>Ingresar Medidor</h3>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -24,10 +24,8 @@
                         <asp:TextBox ID="correoTXT" TextMode="form-control" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     <asp:Button runat="server" CssClass="btn btn-primary" ID="ingresaBtn" Text="Ingresar" OnClick="ingresaBtn_Click"/>
-
                 </div>
             </div>
-
         </div>
     </div>
 </asp:Content>
